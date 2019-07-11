@@ -1,0 +1,8 @@
+﻿! Método e parâmetro -> Lenington e Murilo:
+
+<ChamadaMetodo> ::= <identificador>'('<var>');'
+         <var> ::= <variavel><maisVariavel> | <metodoParamentro>
+         <maisVariavel> ::= ', '<var> | <>
+         <metodoParametro> ::= <identificador>'('<var>')'<var>
+
+
