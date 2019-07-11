@@ -7,16 +7,27 @@ GLOSSÁRIO:
 Os seguintes não terminais devem ser escritos em letra minúsculas: 'se', 'enquanto', 'leia', 'escreva'
 
 Newline - permite muitas linhas.
-Whitespace - define espaços em brancos.      
+
+Whitespace - define espaços em brancos.   
+
 Identificadores - conjuntos de simbolos que podem ser utilizados como identificadores.
+
 Numeros - define números.
+
 CadeiaCaracteres - define uma cadeia de caracteres.
+
 TipoMetodos - define os tipos de retorno dos métodos.
+
 Tipo - define os tipos de variáveis.
+
 OperadoresAritmeticos -	define os operadores aritméticos.
+
 Incrementador - define o '++' e '--'.
+
 OperadoresRelacionais - define o conjunto de operadores relacionais.
+
 OperadoresLogicos - define o conjunto de operadores lógicos.
+
 TipoBooleano - strings que definem o que os tipos booleanos podem receber.
 
 ## Não terminais
