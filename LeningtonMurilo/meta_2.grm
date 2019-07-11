@@ -3,6 +3,6 @@
 <ChamadaMetodo> ::= <identificador>'('<var>');'
          <var> ::= <variavel><maisVariavel> | <metodoParamentro>
          <maisVariavel> ::= ', '<var> | <>
-         <metodoParametro> ::= <identificador>'('<var>')'<var>
+         <metodoParametro> ::= <identificador>'('<var>')'<maisVariavel>
 
 
