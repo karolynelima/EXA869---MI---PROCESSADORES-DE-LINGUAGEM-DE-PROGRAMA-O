@@ -15,7 +15,7 @@
 
 
 ! -------------------------------------------------
-! Terminals
+! Terminais
 ! -------------------------------------------------
 Whitespace    = {WS}+
               
@@ -31,6 +31,8 @@ TipoMetodos = ('inteiro' | 'real' | 'boleano' | 'texto' | 'vazio')
 
 Tipo = ('inteiro' | 'real' | 'boleano' | 'texto')
 
+TipoBooleano = 'verdadeiro'|'falso'
+
 OperadoresAritmeticos = ('+' | '-' | '*' | '/' )
 
 Incrementador = ('++' | '--')
@@ -39,9 +41,14 @@ OperadoresRelacionais = ('!=' | '==' |'<' | '<=' | '>' |'>='| '=')
 
 OperadoresLogicos = ('!' | '&&' | '||')
 
+! -------------------------------------------------
+! Não Terminais
+! -------------------------------------------------
 
 <programa> ::= 'programa{'<escopo>'}'
          
+<newline> ::= NewLine
+           | <>
 
             
 
@@ -55,8 +62,24 @@ OperadoresLogicos = ('!' | '&&' | '||')
 <constantes> ::= Identificadores'='<constante><multiplasConstantes>
 <multiplasConstantes> ::= ','<constantes> 
                         |<>
-<newline> ::= NewLine
-           | <>
 
 <constante> ::= Identificadores   
          | CadeiaCarateres| Numeros
+
+! -------------------------------------------------
+! Atribuição de Variaveis
+! -------------------------------------------------
+
+!Sempre colocar um espaço entre o menos e o número, ex: (- 5)
+<atribuicaoDeVariavel> ::= Identificadores '=' <verificaCaso> ';'
+<verificaCaso> ::= <incremento> | <expressao> | <booleano> 
+
+<incremento> ::= '('Incrementador Identificadores')' | '('Identificadores Incrementador')' 
+              | Incrementador Identificadores | Identificadores Incrementador
+
+<booleano> ::= '('TipoBooleano')' | '(''!' TipoBooleano')' | '(''!' Identificadores')'
+            | TipoBooleano | '!' TipoBooleano | '!' Identificadores
+
+<expressao> ::= '('<expressao>')' <maisOperacoes> | <operador> <maisOperacoes> | '('<expressao>')'
+<maisOperacoes> ::= OperadoresAritmeticos <operador> | OperadoresAritmeticos <expressao>
+<operador> ::= Numeros |  CadeiaDeCaracteres |  Identificadores  |  <chamadaDeMetodo>  |  <vetorMatriz>        

@@ -51,3 +51,21 @@ TipoBooleano - strings que definem o que os tipos booleanos podem receber.
 \<chamadaDeMetodo\> - chamada de método existente.
 
 \<metodoParametro\> - para passar um método como parâmetro.
+
+### Atribuição de Variáveis
+\<atribuicaoDeVariavel\> - permite a atribuição de um valor a uma variável
+
+\<verificaCaso\> - faz a verificação entre incremento, expressão e booleano
+
+\<incremento\> - incremento do valor de uma variável (++/--) 
+
+\<expressao\> - expressões numéricas e concatenações de strings
+
+\<booleano\> - atribuição dos valores booleanos a uma variável (verdadeiro/falso)
+
+\<maisOperacoes\> - permite mais de um termo na expressão 
+
+\<operador\> - o próprio termo da expressão
+
+\<vetorMatriz\> - permite o uso de matrizes e vetores 
+        
