@@ -31,14 +31,18 @@ TipoMetodos = ('inteiro' | 'real' | 'boleano' | 'texto' | 'vazio')
 
 Tipo = ('inteiro' | 'real' | 'boleano' | 'texto')
 
-OperadorAritmeticos = ('+' | '-' | '*' | '/' )
+OperadoresAritmeticos = ('+' | '-' | '*' | '/' )
 
 Incrementador = ('++' | '--')
          
 OperadoresRelacionais = ('!=' | '==' |'<' | '<=' | '>' |'>='| '=')
 
+OperadoresLogicos = ('!' | '&&' | '||')
+
 
 <programa> ::= 'programa{'<escopo>'}'
+         
+
             
 
 ! -------------------------------------------------
