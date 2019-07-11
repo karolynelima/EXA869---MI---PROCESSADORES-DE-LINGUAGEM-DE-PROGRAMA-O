@@ -9,6 +9,31 @@ Newline - permite muitas linhas.
 ## Terminais
 \<newline\> - permite novas linhas ou vazio
 
+\<se\> - 
+
+\<enquanto\> - 
+
+\<leia\> - 
+
+\<escreva\> - 
+
+\<chamadaDeMetodo\> - chamada de método existente
+
+\<metodoParametro\> - para passar um método como parâmetro
+
+\<operadorRelacional\> - 
+
+\<operadorLogico\> - 
+
+\<operadorAritimetico\> - 
+
+\<identificador\> - 
+
+\<numero\> - 
+
+\<incrementador\> - 
+
+
 ### Bloco de constantes
 <bloco_constantes> - permite a declaração do bloco de constantes.
 
