@@ -11,9 +11,15 @@
 
 {String Chars} = {Printable} + {HT} - ["]
 
+{WS}           = {Whitespace} - {CR} - {LF}
+
+
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
+Whitespace    = {WS}+
+              
+NewLine       = ({CR}{LF} | {CR} | {LF})+
 
 Identificadores = {Letter}({AlphaNumeric}) | {[_]})*
               
@@ -28,7 +34,25 @@ Tipo = ('inteiro' | 'real' | 'boleano' | 'texto')
 OperadorAritmeticos = ('+' | '-' | '*' | '/' )
 
 Incrementador = ('++' | '--')
-
+         
+OperadoresRelacionais = ('!=' | '==' |'<' | '<=' | '>' |'>='| '=')
 
 
 <programa> ::= 'programa{'<escopo>'}'
+            
+
+! -------------------------------------------------
+! Constantes
+! -------------------------------------------------
+
+<blocoConstantes>::= 'constantes{'<newline><estrutura_constante><newline>'}'
+<estrutura_constante> ::= <tipo><constantes>';'<newline><estruturaConstante>
+                       |<>
+<constantes> ::= Identificadores'='<constante><multiplasConstantes>
+<multiplasConstantes> ::= ','<constantes> 
+                        |<>
+<newline> ::= NewLine
+           | <>
+
+<constante> ::= Identificadores   
+         | CadeiaCarateres| Numeros
