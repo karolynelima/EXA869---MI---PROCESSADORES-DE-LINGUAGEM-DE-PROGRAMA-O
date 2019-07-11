@@ -1,0 +1,34 @@
+"Name"     = 'Enter the name of the grammar'
+"Author"   = 'Enter your name'
+"Version"  = 'The version of the grammar and/or language'
+"About"    = 'A short description of the grammar'
+
+"Start Symbol" = <programa>
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {Printable} + {HT} - ["]
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+Identificadores = {Letter}({AlphaNumeric}) | {[_]})*
+              
+Numeros = (-)?{Digit}+('.'{Digit}+)?
+      
+CadeiaCaracteres  = '"' {String Chars}* '"'
+
+TipoMetodos = ('inteiro' | 'real' | 'boleano' | 'texto' | 'vazio')
+
+Tipo = ('inteiro' | 'real' | 'boleano' | 'texto')
+
+OperadorAritmeticos = ('+' | '-' | '*' | '/' )
+
+Incrementador = ('++' | '--')
+
+
+
+<programa> ::= 'programa{'<escopo>'}'
