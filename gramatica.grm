@@ -64,7 +64,8 @@ OperadoresLogicos = ('!' | '&&' | '||')
                         |<>
 
 <constante> ::= Identificadores   
-         | CadeiaCarateres| Numeros
+         | CadeiaCarateres
+         | Numeros
 
 ! -------------------------------------------------
 ! Atribuição de Variaveis
@@ -72,19 +73,36 @@ OperadoresLogicos = ('!' | '&&' | '||')
 
 !Sempre colocar um espaço entre o menos e o número, ex: (- 5)
 <atribuicaoDeVariavel> ::= Identificadores '=' <verificaCaso> ';'
-<verificaCaso> ::= <incremento> | <expressao> | <booleano> 
+<verificaCaso> ::= <incremento> 
+                | <expressao> 
+                | <booleano> 
 
-<incremento> ::= '('Incrementador Identificadores')' | '('Identificadores Incrementador')' 
-              | Incrementador Identificadores | Identificadores Incrementador
+<incremento> ::= '('Incrementador Identificadores')' 
+              | '('Identificadores Incrementador')' 
+              | Incrementador Identificadores 
+              | Identificadores Incrementador
 
-<booleano> ::= '('TipoBooleano')' | '(''!' TipoBooleano')' | '(''!' Identificadores')'
-            | TipoBooleano | '!' TipoBooleano | '!' Identificadores
+<booleano> ::= '('TipoBooleano')' 
+            | '(''!' TipoBooleano')' 
+            | '(''!' Identificadores')'
+            | TipoBooleano 
+            | '!' TipoBooleano 
+            | '!' Identificadores
 
-<expressao> ::= '('<expressao>')' <maisOperacoes> | <operador> <maisOperacoes> | '('<expressao>')'
-<maisOperacoes> ::= OperadoresAritmeticos <operador> | OperadoresAritmeticos <expressao>
-<operador> ::= Numeros |  CadeiaDeCaracteres |  Identificadores  |  <chamadaDeMetodo>  |  <vetorMatriz>  
+<expressao> ::= '('<expressao>')' <maisOperacoes> 
+             | <operador> <maisOperacoes> 
+             | '('<expressao>')'
+             
+<maisOperacoes> ::= OperadoresAritmeticos <operador> 
+                 | OperadoresAritmeticos <expressao>
+                 
+<operador> ::= Numeros 
+            |  CadeiaDeCaracteres 
+            |  Identificadores  
+            |  <chamadaDeMetodo>  
+            |  <vetorMatriz>  
             
 ! -------------------------------------------------
 ! Incrementador
 ! -------------------------------------------------    
-<incrementador> :: = Identificadores '=' Incrementador ';'
+<incrementador> :: = Identificadores Incrementador ';'
