@@ -1,4 +1,4 @@
-"Name"     = 'Enter the name of the grammar'
+﻿"Name"     = 'Enter the name of the grammar'
 "Author"   = 'Enter your name'
 "Version"  = 'The version of the grammar and/or language'
 "About"    = 'A short description of the grammar'
@@ -82,4 +82,9 @@ OperadoresLogicos = ('!' | '&&' | '||')
 
 <expressao> ::= '('<expressao>')' <maisOperacoes> | <operador> <maisOperacoes> | '('<expressao>')'
 <maisOperacoes> ::= OperadoresAritmeticos <operador> | OperadoresAritmeticos <expressao>
-<operador> ::= Numeros |  CadeiaDeCaracteres |  Identificadores  |  <chamadaDeMetodo>  |  <vetorMatriz>        
+<operador> ::= Numeros |  CadeiaDeCaracteres |  Identificadores  |  <chamadaDeMetodo>  |  <vetorMatriz>  
+            
+! -------------------------------------------------
+! Incrementador
+! -------------------------------------------------    
+<incrementador> :: = Identificadores '=' Incrementador ';'

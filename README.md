@@ -68,4 +68,9 @@ TipoBooleano - strings que definem o que os tipos booleanos podem receber.
 \<operador\> - o próprio termo da expressão
 
 \<vetorMatriz\> - permite o uso de matrizes e vetores 
-        
+
+### Incrementador
+
+\<incrementador\> - permite que haja no meio no código a seguinte expressão b++; ou b--;
+
+
