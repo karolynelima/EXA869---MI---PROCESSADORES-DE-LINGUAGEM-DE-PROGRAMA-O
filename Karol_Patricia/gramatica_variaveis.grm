@@ -1,0 +1,8 @@
+<DeclaraoVariaveis> ::= 'varivaeis' '{' <Var> '}' | < >
+<Var> ::= <tipo> <complemento> | <tipo> <complemento> <MaisVariaveis> ';'
+<complemento> ::= <identificador> <variavelMesmoTipo>
+<variavelMesmoTipo> ::= ',' <identificador> | ';'
+<MaisVariaveis> ::= <Var>
+<tipo> ::= 'inteiro' | 'real' | 'boleano' | 'texto'
+
+
