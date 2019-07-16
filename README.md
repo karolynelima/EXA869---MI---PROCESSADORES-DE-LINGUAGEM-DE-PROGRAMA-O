@@ -76,20 +76,32 @@ TipoBooleano - strings que definem o que os tipos booleanos podem receber.
 ### Declaração de Variáveis
 
 \<DeclaracaoVariaveis\> - Permite a declaração de variáveis definindo sua estrutura
+
 \<Var\> - Define a estrutura da declaração de um tipo determinado de variável  
+
 \<tipo\> - Define os tipos permitidos para declaração de variáveis
+
 \<complemento\> - Define o nome da variável
+
 \<MaisVariaveis\> - Define a estrutura da declaração de um tipo diferente de variável 
+
 \<variavelMesmoTipo\> - Define a estrutura da declaração caso existam variáveis do mesmo tipo, senão finaliza com ';'
+
 \<boleano\> - Atribui o valor de verdadeiro ou falso em uma variável de tipo boleano
 
 ### Declaração do enquanto
 
 \<enquanto\> - Permite a declaração do laço enquanto
+
 \<operacao_relacional\> - Define a estrutura de uma operação relacional
+
 \<complemento_enquanto\> - Define a estrutura do bloco do enquanto 
+
 \<conteudo_laco\> - Permite a declaração dos comandos que são permitidos no bloco do enquanto 
+
 \<operador_rel\> - Associa o primeiro elemento da operação relacional com as operações específicas
+
 \<complemento_operador\> Associa o segundo elemento da operação relacional
+
 \<comando\> - Define os comandos no bloco do enquanto, permitindo repetição de comandos ou vazio
 
