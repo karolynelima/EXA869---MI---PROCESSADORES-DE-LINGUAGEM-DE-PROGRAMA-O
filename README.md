@@ -105,3 +105,8 @@ TipoBooleano - strings que definem o que os tipos booleanos podem receber.
 
 \<comando\> - Define os comandos no bloco do enquanto, permitindo repetição de comandos ou vazio
 
+### Parametros
+
+\<listaParametros>\ - lista de parâmetros de metodos
+
+\<maisParametros>\ - mais parâmetros seguidos de ',' (vírgulas)
