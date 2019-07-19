@@ -21,9 +21,9 @@ Whitespace    = {WS}+
               
 NewLine       = ({CR}{LF} | {CR} | {LF})+
 
-Identificadores = {Letter}({AlphaNumeric}) | {[_]})*
+Identificadores = {Letter}({AlphaNumeric} | [_])*
               
-Numeros = (-)?{Digit}+('.'{Digit}+)?
+Numeros = ('-')?{Digit}+('.'{Digit}+)?
       
 CadeiaCaracteres  = '"' {String Chars}* '"'
 
@@ -40,6 +40,21 @@ Incrementador = ('++' | '--')
 OperadoresRelacionais = ('!=' | '==' |'<' | '<=' | '>' |'>='| '=')
 
 OperadoresLogicos = ('!' | '&&' | '||')
+                  
+
+
+!--------------------------------------------------
+! Vetores e Matrizes
+!--------------------------------------------------
+<OpIndice> ::= OperadoresAritmeticos <OpI2> <OpIndice> | <>
+<OpI2> ::= Numeros | Identificadores  
+<Vetor> ::= '[' <OpI2><OpIndice> ']' <Matriz> | <>
+
+<Matriz> ::= '[' <OpI2><OpIndice> ']' | <>
+          
+
+
+
 
 ! -------------------------------------------------
 ! Não Terminais
@@ -51,13 +66,13 @@ OperadoresLogicos = ('!' | '&&' | '||')
            | <>
 
             
-
+<escopo> ::= <>
 ! -------------------------------------------------
 ! Constantes
 ! -------------------------------------------------
 
 <blocoConstantes>::= 'constantes{'<newline><estrutura_constante><newline>'}'
-<estrutura_constante> ::= <tipo><constantes>';'<newline><estruturaConstante>
+<estrutura_constante> ::= Tipo<constantes>';'<newline><estrutura_constante>
                        |<>
 <constantes> ::= Identificadores'='<constante><multiplasConstantes>
 <multiplasConstantes> ::= ','<constantes> 
@@ -100,9 +115,46 @@ OperadoresLogicos = ('!' | '&&' | '||')
             |  CadeiaDeCaracteres 
             |  Identificadores  
             |  <chamadaDeMetodo>  
-            |  <vetorMatriz>  
+            |  <Vetor>  
             
 ! -------------------------------------------------
 ! Incrementador
 ! -------------------------------------------------    
-<incrementador> :: = Identificadores Incrementador ';'
+<incrementador> ::= Identificadores Incrementador ';'
+
+!--------------------------------------------------
+! Escrita
+!--------------------------------------------------
+                 
+<expN> ::= OperadoresAritmeticos <expN2> <expN> | <>
+<expN2> ::= Numeros | Identificadores <Vetor> 
+<expC> ::= OperadoresAritmeticos CadeiaCaracteres <expC> | <>
+ 
+<escreva> ::= 'escreva' '(' <Param Escrita> ');'
+<Param Escrita> ::= <TipoParametroE><MaisParametroE>
+<MaisParametroE> ::= ',' <Param Escrita> | <>
+<TipoParametroE> ::= Numeros <expN> | CadeiaCaracteres <expC> | Identificadores <Vetor> <expN> | 'verdadeiro' | 'falso' | <chamadaDeMetodo>
+     
+!--------------------------------------------------
+! Se
+!--------------------------------------------------
+<negar> ::= OperadoresLogicos | <>
+<maisCond> ::= OperadoresLogicos <cond> <maisCond> | <>
+<se> ::= 'se' <condse> 'entao{' <blocoSe> '}' <senao>
+<condse> ::= '(' <cond> <maisCond> ')'
+<cond> ::= <termo> OperadoresRelacionais <termo> | <negar> Identificadores<Vetor>
+       
+<tipoTermo> ::= Identificadores<Vetor> | Numeros | CadeiaCaracteres
+        
+<termo> ::= <tipoTermo> <op>
+<op> ::= OperadorAritmeticos <tipoTermo> <op>|<>
+      
+<blocoSe> ::= <comandos><blocoSe> | <>
+<condSenao> ::= <condse> 'entao' | <>
+<senao> ::= <> | 'senao' <condSenao> '{' <blocoSe> '}'
+
+!--------------------------------------------------
+! Comandos para os blocos dos escopo de se, enquanto e metodos
+!--------------------------------------------------
+<comandos> ::= <leia> | <escreva> | <se> | <enquanto> | <atribuicaoDeVariavel> | <chamadaDeMetodo>
+
