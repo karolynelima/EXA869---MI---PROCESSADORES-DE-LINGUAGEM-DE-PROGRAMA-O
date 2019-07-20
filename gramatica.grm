@@ -60,18 +60,31 @@ OperadoresLogicos = ('!' | '&&' | '||')
 ! Não Terminais
 ! -------------------------------------------------
 
-<programa> ::= 'programa{'<escopoPrograma>'}'
+<programa> ::= 'programa{'<blocoConstantes> <escopoPrograma>'}'
          
 <newline> ::= NewLine
            | <>
 
             
 <escopoPrograma> ::= <metodo> <escopoPrograma> | <>
+                  
+
+! -------------------------------------------------
+! Declaração de Variaveis
+! -------------------------------------------------
+<DeclaracaoVariaveis> ::= 'variaveis' '{'<newline><VarV><newline>'}' | <>
+<VarV> ::= Tipo <complementoV> <MaisVariaveis> 
+<complementoV> ::= Identificadores <variavelMesmoTipo>
+<variavelMesmoTipo> ::= ',' <complementoV> | ';'<newline>
+<MaisVariaveis> ::= <VarV> | <>
+
+
+
 ! -------------------------------------------------
 ! Constantes
 ! -------------------------------------------------
 
-<blocoConstantes>::= 'constantes{'<newline><estrutura_constante><newline>'}'
+<blocoConstantes>::= 'constantes{'<newline><estrutura_constante><newline>'}' | <>
 <estrutura_constante> ::= Tipo<constantes>';'<newline><estrutura_constante>
                        |<>
 <constantes> ::= Identificadores'='<constante><multiplasConstantes>
@@ -177,4 +190,17 @@ OperadoresLogicos = ('!' | '&&' | '||')
 <maisVariavel> ::= ','<var> | <>
 <metodoParametro> ::= Identificadores'('<var>')'<maisVariavel>
 
+!--------------------------------------------------
+! Declaração de Enquanto
+!--------------------------------------------------
 
+<enquanto> ::= 'enquanto' '(' <operacao_relacional> ')' '{' <conteudo_laco> '}'
+
+!Operação relacional
+<operacao_relacional> ::= <complemento_operador> OperadoresRelacionais <complemento_operador>
+
+<complemento_operador> ::= Identificadores<Vetor> | Numero | CadeiaCaracteres
+                                              
+!Conteudo laco
+
+<conteudo_laco> ::= <comandos> <conteudo_laco> | <>

@@ -33,10 +33,10 @@ Char = ''{Chars}''
 
 !Declaração de variaveis
 <DeclaracaoVariaveis> ::= 'variaveis' '{' <Var>'}' | <>
-<Var> ::= <tipo> <complemento> | <tipo> <complemento> <MaisVariaveis> 
+<Var> ::= <tipo> <complemento> <MaisVariaveis> 
 <complemento> ::= Identificador <variavelMesmoTipo>
 <variavelMesmoTipo> ::= ',' Identificador | ';'
-<MaisVariaveis> ::= <Var>
+<MaisVariaveis> ::= <Var> | <>
 <tipo> ::= 'inteiro' | 'real' | <boleano> | 'texto'
 <boleano> ::= 'verdadeiro' | 'falso'
 
