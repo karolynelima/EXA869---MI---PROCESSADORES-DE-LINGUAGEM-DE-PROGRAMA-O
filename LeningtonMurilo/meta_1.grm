@@ -1,14 +1,12 @@
 ﻿! Método e parâmetro -> Lenington e Murilo:
 
-<start> ::= <metodo>
-         
-         <metodo> ::= 'metodo '<identificador>'('<lista_parametros>'):'<tipo_retorno>'{'<escopo>'}'
-         <lista_parametros> ::= <parametro><tipo>',' |<parametro><tipo>|<>
+<metodo> ::= 'metodo '<identificador>'('<listaParametros>'):'<tipo_retorno>'{'<escopo>'}'
+         <listaParametros> ::= <parametro><tipo><maisParametro>
+         <maisParametros> ::= ','<parametro><tipo><listaParametros> | <>
          <tipo> ::= <real>
                     | <inteiro>
                     | <boleano>
                     | <texto>
-                    | <>
          <tipo_retorno> ::= <real>
                              | <inteiro>
                              | <boleano>
