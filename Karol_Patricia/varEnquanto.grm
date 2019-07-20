@@ -1,0 +1,44 @@
+﻿"Start Symbol" = <enquanto>
+"Case Sensitive" = true
+                 
+{String Chars} = {Printable} + {HT} - ["]
+{Chars} = {Printable} + {HT} - ['']                  
+        
+Identificador = {Letter}({Letter}|{AlphaNumeric}|'_')*
+Cadeia = '"'{String Chars}'"'
+Numero = {Number} + ('.' {Number} +)?
+Char = ''{Chars}''     
+
+
+!Declaração de enquanto
+
+<enquanto> ::= 'enquanto' '(' <operacao_relacional> ')' <complemento_enquanto>
+<complemento_enquanto> ::= '{' <conteudo_laco> '}'
+
+!Operação relacional
+
+<operacao_relacional> ::= Identificador <operador_rel> | Numero <operador_rel>
+<operador_rel> ::= '<' <complemento_operador> 
+                | '>' <complemento_operador> 
+                |'=' <complemento_operador>
+                | '<=' <complemento_operador> 
+                | '>=' <complemento_operador> 
+                |'!=' <complemento_operador>
+<complemento_operador> ::= Identificador | Numero 
+                                              
+!Conteudo laco
+
+<conteudo_laco> ::= <comando> <conteudo_laco> | <>
+<comando> ::= Identificador | 'leia' | 'escreva' | 'se' | 'enquanto' 
+
+!Declaração de variaveis
+<DeclaracaoVariaveis> ::= 'variaveis' '{' <Var>'}' | <>
+<Var> ::= <tipo> <complemento> | <tipo> <complemento> <MaisVariaveis> 
+<complemento> ::= Identificador <variavelMesmoTipo>
+<variavelMesmoTipo> ::= ',' Identificador | ';'
+<MaisVariaveis> ::= <Var>
+<tipo> ::= 'inteiro' | 'real' | <boleano> | 'texto'
+<boleano> ::= 'verdadeiro' | 'falso'
+
+
+
