@@ -36,14 +36,6 @@ metodo remocaoFuncionario (inteiro qtd, texto funcionario, real salario):boleano
 
 metodo aumentoSalario(real salario, inteiro qtd): boleano{
 
-    /*
-        Toda vez que há aumentos todos os funcionarios 
-        cadastrados tem direito a 30% de aumento no salário
-        atual.
-    
-    */
-
-
     variaveis{
         inteiro cont;
     }
@@ -83,7 +75,7 @@ metodo principal():vazio{
     
     a = True;
     
-    enquanto(a){
+    enquanto(a == verdadeiro){
         
         escreva("Bem vindo !!! \n \n \n");
         escreva("Tecle 1 para cadastrar novo funcionario; \n");
