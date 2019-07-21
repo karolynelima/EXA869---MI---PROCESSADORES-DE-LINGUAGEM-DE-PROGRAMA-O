@@ -6,7 +6,7 @@
         
 Identificador = {Letter}({Letter}|{AlphaNumeric}|'_')*
 Cadeia = '"'{String Chars}'"'
-Numero = {Number} + ('.' {Number} +)?
+Numeros = {Number} + ('.' {Number} +)?
 Char = ''{Chars}''     
 
 
@@ -17,14 +17,14 @@ Char = ''{Chars}''
 
 !Operação relacional
 
-<operacao_relacional> ::= Identificador <operador_rel> | Numero <operador_rel>
+<operacao_relacional> ::= Identificador <operador_rel> | Numeros <operador_rel>
 <operador_rel> ::= '<' <complemento_operador> 
                 | '>' <complemento_operador> 
                 |'=' <complemento_operador>
                 | '<=' <complemento_operador> 
                 | '>=' <complemento_operador> 
                 |'!=' <complemento_operador>
-<complemento_operador> ::= Identificador | Numero 
+<complemento_operador> ::= Identificador | Numeros 
                                               
 !Conteudo laco
 
