@@ -200,7 +200,7 @@ OperadoresLogicos = ('&&' | '||')
 !Operação relacional
 <operacao_relacional> ::= <complemento_operador> OperadoresRelacionais <complemento_operador> | <negar> Identificadores<Vetor>
 
-<complemento_operador> ::= Identificadores<Vetor> | Numero | CadeiaCaracteres
+<complemento_operador> ::= Identificadores<Vetor> | Numeros | CadeiaCaracteres
                                               
 !Conteudo laco
 
