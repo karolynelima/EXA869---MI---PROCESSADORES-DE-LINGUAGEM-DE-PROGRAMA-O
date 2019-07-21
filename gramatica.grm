@@ -11,6 +11,11 @@
 
 {String Chars} = {Printable} + {HT} - ["]
 
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+CadeiaCaracteres = '"' {String Chars}* '"'
 
 ! -------------------------------------------------
 ! Terminais
@@ -20,8 +25,6 @@ Identificadores = {Letter}({AlphaNumeric} | [_])*
               
 Numeros = ('-')?{Digit}+('.'{Digit}+)?
       
-CadeiaCaracteres  = '"' {String Chars}* '"'
-
 Tipo = ('inteiro' | 'real' | 'boleano' | 'texto' | 'vazio')
 
 TipoBooleano = 'verdadeiro'|'falso'
@@ -72,15 +75,16 @@ OperadoresLogicos = ('&&' | '||')
 ! Constantes
 ! -------------------------------------------------
 
-<blocoConstantes>::= 'constantes''{'<estrutura_constante>'}' | <>
+<blocoConstantes>::= 'constantes''{'<estrutura_constante>'}' |<>
 <estrutura_constante> ::= Tipo<constantes>';'<estrutura_constante>
                        |<>
 <constantes> ::= Identificadores'='<constante><multiplasConstantes>
+              | Identificadores'='<constante>
+              
 <multiplasConstantes> ::= ','<constantes> 
-                        |<>
 
 <constante> ::= Identificadores   
-         | CadeiaCarateres
+         | CadeiaCaracteres
          | Numeros
 
 ! -------------------------------------------------
@@ -105,23 +109,22 @@ OperadoresLogicos = ('&&' | '||')
             | '!' TipoBooleano 
             | '!' Identificadores<Vetor> 
 
-<expressao> ::= '('<expressao>')' <maisOperacoes> 
-             | Numeros <maisOperacoes> 
-             | CadeiaDeCaracteres <maisOperacoes> 
-             | Identificadores<Vetor>  <maisOperacoes> 
-             | <chamadaDeMetodo> <maisOperacoes> 
-             | '('<expressao>')'   
-             | Numeros  
-             |  CadeiaDeCaracteres 
-             |  Identificadores<Vetor>   
-             |  <chamadaDeMetodo>  
+<expressao> ::= '('<expressao>')' 
+             | '('<expressao>')' OperadoresAritmeticos <expressao>
+             | <operador> <maisOperacoes>
+       
              
-<maisOperacoes> ::= OperadoresAritmeticos Numeros 
-                 | OperadoresAritmeticos CadeiaDeCaracteres  
-                 | OperadoresAritmeticos Identificadores<Vetor>  
-                 | OperadoresAritmeticos <chamadaDeMetodo> 
-                 | OperadoresAritmeticos <expressao>
-               
+<maisOperacoes> ::= OperadoresAritmeticos <maisOperacoes>
+                 | OperadoresAritmeticos  <expressao>
+                 | <>
+                 
+<operador> ::=  Numeros
+                | CadeiaCaracteres
+                | Identificadores<Vetor>
+                | <chamadaDeMetodo>
+                
+ 
+
             
 ! -------------------------------------------------
 ! Incrementador
@@ -170,7 +173,7 @@ OperadoresLogicos = ('&&' | '||')
 ! Comandos para os blocos dos escopo de se, enquanto e metodos
 !--------------------------------------------------
 <comandos> ::= <leia> | <escreva> | <se> | <enquanto> | <atribuicaoDeVariavel> | <chamadaDeMetodo> | <incrementador> | 'resultado' <retorno> ';'           
-!<retorno> ::= Identificadores<Vetor> | Numero | CadeiaCaracteres | TipoBooleano | <chamadaDeMetodo> | <>
+!<retorno> ::= Identificadores<Vetor> | Numero | StringLiteral | TipoBooleano | <chamadaDeMetodo> | <>
 <retorno> ::= <verificaCaso> | <>
 
 !--------------------------------------------------
@@ -207,5 +210,8 @@ OperadoresLogicos = ('&&' | '||')
 <complemento_operador> ::= Identificadores<Vetor> | Numero | CadeiaCaracteres
                                               
 !Conteudo laco
-
 <conteudo_laco> ::= <comandos> <conteudo_laco> | <>
+
+
+
+
