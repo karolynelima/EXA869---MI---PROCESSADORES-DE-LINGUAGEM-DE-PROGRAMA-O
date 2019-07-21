@@ -14,7 +14,7 @@ metodo cadastroFuncionario (texto nome, texto funcionario, inteiro qtd, real sal
 
         resultado verdadeiro;
 
-    } senao{
+    } entao{
         resultado falso;
     }
 
@@ -30,7 +30,7 @@ metodo remocaoFuncionario (inteiro qtd, texto funcionario, real salario):boleano
         qtd--; 
         resultado verdadeiro;
 
-    } senao{
+    } entao{
         resultado falso;
     }
 }
@@ -45,7 +45,7 @@ metodo aumentoSalario(real salario, inteiro qtd): boleano{
     */
 
 
-    variaveis{
+    variavel{
         inteiro cont;
     }
     
@@ -68,7 +68,7 @@ metodo printDeucerto(boleano a): vazio{
     se (a) entao{
         
         escreva("Deu certo :)\n");
-    } senao {
+    } entao {
         escreva("N�o deu certo :( \n");
     }
 }
@@ -106,7 +106,7 @@ metodo principal():vazio{
             deucerto = aumentoSalario(salario, qtd);
              printDeucerto(deucerto);
         }
-        senao {
+        entao {
             escreva("ERRO! Op��o inv�lida\n");  
         }
         

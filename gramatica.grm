@@ -106,18 +106,22 @@ OperadoresLogicos = ('&&' | '||')
             | '!' Identificadores<Vetor> 
 
 <expressao> ::= '('<expressao>')' <maisOperacoes> 
-             | <operador> <maisOperacoes> 
-             | '('<expressao>')'         
+             | Numeros <maisOperacoes> 
+             | CadeiaDeCaracteres <maisOperacoes> 
+             | Identificadores<Vetor>  <maisOperacoes> 
+             | <chamadaDeMetodo> <maisOperacoes> 
+             | '('<expressao>')'   
+             | Numeros  
+             |  CadeiaDeCaracteres 
+             |  Identificadores<Vetor>   
+             |  <chamadaDeMetodo>  
              
-<maisOperacoes> ::= OperadoresAritmeticos <operador> 
+<maisOperacoes> ::= OperadoresAritmeticos Numeros 
+                 | OperadoresAritmeticos CadeiaDeCaracteres  
+                 | OperadoresAritmeticos Identificadores<Vetor>  
+                 | OperadoresAritmeticos <chamadaDeMetodo> 
                  | OperadoresAritmeticos <expressao>
                
-                 
-<operador> ::= Numeros 
-            |  CadeiaDeCaracteres 
-            |  Identificadores<Vetor>   
-            |  <chamadaDeMetodo>  
-!            |  <Vetor>  
             
 ! -------------------------------------------------
 ! Incrementador
