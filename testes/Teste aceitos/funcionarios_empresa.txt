@@ -24,8 +24,7 @@ metodo cadastroFuncionario (texto nome, texto funcionario, inteiro qtd, real sal
 metodo remocaoFuncionario (inteiro qtd, texto funcionario, real salario):boleano{
     
     se (qtd > 0) entao{
-
-        funcionario[qtd] = "";
+        funcionario[qtd] = "" ;
         salario[qtd] = 0;
         qtd--; 
         resultado verdadeiro;
@@ -107,7 +106,7 @@ metodo principal():vazio{
              printDeucerto(deucerto);
         }
         senao {
-            escreva("ERRO! Op��o inv�lida\n");  
+            escreva("ERRO! Opçao inválida\n");  
         }
         
   
