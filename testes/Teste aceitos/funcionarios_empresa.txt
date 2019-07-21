@@ -60,7 +60,7 @@ metodo printDeucerto(boleano a): vazio{
         
         escreva("Deu certo :)\n");
     } senao {
-        escreva("Não deu certo :( \n");
+        escreva("Nao deu certo :( \n");
     }
 }
 
