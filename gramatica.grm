@@ -95,7 +95,7 @@ OperadoresLogicos = ('&&' | '||')
 <atribuicaoDeVariavel> ::= Identificadores<Vetor>  '=' <verificaCaso>';'
 <verificaCaso> ::= <incremento> 
                 | <expressao> 
-                | <booleano> 
+                | <booleano>
 
 <incremento> ::= '('Incrementador Identificadores<Vetor> ')' 
               | '('Identificadores<Vetor>  Incrementador')' 
@@ -134,15 +134,10 @@ OperadoresLogicos = ('&&' | '||')
 !--------------------------------------------------
 ! Escrita
 !--------------------------------------------------
-                 
-<expN> ::= OperadoresAritmeticos <expN2> <expN> | <>
-<expN2> ::= Numeros | Identificadores <Vetor> 
-<expC> ::= OperadoresAritmeticos CadeiaCaracteres <expC> | <>
  
 <escreva> ::= 'escreva' '(' <Param Escrita> ')'';'
-<Param Escrita> ::= <TipoParametroE><MaisParametroE>
+<Param Escrita> ::= <verificaCaso><MaisParametroE>
 <MaisParametroE> ::= ',' <Param Escrita> | <>
-<TipoParametroE> ::= Numeros <expN> | CadeiaCaracteres <expC> | Identificadores <Vetor> <expN> | TipoBooleano | <chamadaDeMetodo>
 
 !--------------------------------------------------
 ! Leia
@@ -195,7 +190,7 @@ OperadoresLogicos = ('&&' | '||')
 !--------------------------------------------------
 
 <chamadaDeMetodo> ::= Identificadores'('<var>')'
-<var> ::= Identificadores<Vetor> <maisVariavel> | <metodoParametro>
+<var> ::= Identificadores<Vetor> <maisVariavel> | <metodoParametro>|<>
 <maisVariavel> ::= ','<var> | <>
 <metodoParametro> ::= Identificadores'('<var>')'<maisVariavel>
 

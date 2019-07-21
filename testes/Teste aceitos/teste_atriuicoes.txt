@@ -1,0 +1,23 @@
+programa{
+
+constantes{
+inteiro a = 155;
+}
+
+metodo qualquer_coisa(inteiro a, texto b, boleano c):vazio{
+
+variaveis{
+inteiro x;texto z;
+boleano y;
+}
+
+se (b < vetor[c]) entao{
+	x = 1+((2/4)*((3*6)+7)- 5);
+	y = !false; z = "oi";
+}
+
+leia 
+
+}
+
+}

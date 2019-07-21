@@ -1,0 +1,50 @@
+programa{ 
+
+constantes{}
+
+metodo bubble_sort():vazio{
+
+    variaveis{
+	inteiro i,j, aux;
+	inteiro vet[5];
+
+    }    
+    
+    vet[0] = 8;
+    vet[1] = 9;
+    vet[2] = 3;
+    vet[3] = 5;
+    vet[4] = 1;
+    aux = 0;
+    i = 0;
+     
+    escreva("Vetor desordenado: ");
+		
+    enquanto(i < 5){
+        escreva(" "+vet[i]);
+	i++;
+    }
+    escreva(" ");
+     
+    i = 0;
+    enquanto(i<5){
+	j = 0;
+        enquanto(j<4){
+            se(vet[j] > vet[j + 1]) entao{
+                aux = vet[j];
+                vet[j] = vet[j+1];
+                vet[j+1] = aux;
+            }
+	  j++;
+        }
+	i++;
+    }
+    escreva("Vetor organizado:");
+    i = 0;
+    enquanto(i<5){
+        escreva(" "+vet[i]);
+	i++;
+    }
+}
+
+}
