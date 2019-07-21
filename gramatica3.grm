@@ -3,7 +3,7 @@
 "Version"  = 'The version of the grammar and/or language'
 "About"    = 'A short description of the grammar'
 
-"Start Symbol" = <programa>
+"Start Symbol" = <Program>
 
 ! -------------------------------------------------
 ! Character Sets
@@ -11,20 +11,20 @@
 
 {String Chars} = {Printable} + {HT} - ["]
 
-! -------------------------------------------------
-! Terminals
-! -------------------------------------------------
-
-CadeiaCaracteres = '"' {String Chars}* '"'
 
 ! -------------------------------------------------
 ! Terminais
 ! -------------------------------------------------
+Whitespace    = {WS}+
+              
+NewLine       = ({CR}{LF} | {CR} | {LF})+
 
 Identificadores = {Letter}({AlphaNumeric} | [_])*
               
 Numeros = ('-')?{Digit}+('.'{Digit}+)?
       
+CadeiaCaracteres  = '"' {String Chars}* '"'
+
 Tipo = ('inteiro' | 'real' | 'boleano' | 'texto' | 'vazio')
 
 TipoBooleano = 'verdadeiro'|'falso'
@@ -54,7 +54,7 @@ OperadoresLogicos = ('&&' | '||')
 ! Não Terminais
 ! -------------------------------------------------
 
-<programa> ::= 'programa''{'<blocoConstantes> <escopoPrograma>'}'
+<programa> ::= 'programa{'<blocoConstantes> <escopoPrograma>'}'
         
             
 <escopoPrograma> ::= <metodo> <escopoPrograma> | <>
@@ -65,7 +65,7 @@ OperadoresLogicos = ('&&' | '||')
 ! -------------------------------------------------
 <DeclaracaoVariaveis> ::= 'variaveis' '{'<VarV>'}' | <>
 <VarV> ::= Tipo <complementoV> <MaisVariaveis> 
-<complementoV> ::= Identificadores<Vetor> <variavelMesmoTipo>
+<complementoV> ::= Identificadores <variavelMesmoTipo>
 <variavelMesmoTipo> ::= ',' <complementoV> | ';'
 <MaisVariaveis> ::= <VarV> | <>
 
@@ -75,16 +75,15 @@ OperadoresLogicos = ('&&' | '||')
 ! Constantes
 ! -------------------------------------------------
 
-<blocoConstantes>::= 'constantes''{'<estrutura_constante>'}' |<>
+<blocoConstantes>::= 'constantes{'<estrutura_constante>'}' | <>
 <estrutura_constante> ::= Tipo<constantes>';'<estrutura_constante>
                        |<>
 <constantes> ::= Identificadores'='<constante><multiplasConstantes>
-              | Identificadores'='<constante>
-              
 <multiplasConstantes> ::= ','<constantes> 
+                        |<>
 
 <constante> ::= Identificadores   
-         | CadeiaCaracteres
+         | CadeiaCarateres
          | Numeros
 
 ! -------------------------------------------------
@@ -92,7 +91,7 @@ OperadoresLogicos = ('&&' | '||')
 ! -------------------------------------------------
 
 !Sempre colocar um espaço entre o menos e o número, ex: (- 5)
-<atribuicaoDeVariavel> ::= Identificadores<Vetor>  '=' <verificaCaso>';'
+<atribuicaoDeVariavel> ::= Identificadores<Vetor>  '=' <verificaCaso> ';'
 <verificaCaso> ::= <incremento> 
                 | <expressao> 
                 | <booleano> 
@@ -109,22 +108,18 @@ OperadoresLogicos = ('&&' | '||')
             | '!' TipoBooleano 
             | '!' Identificadores<Vetor> 
 
-<expressao> ::= '('<expressao>')' 
-             | '('<expressao>')' OperadoresAritmeticos <expressao>
-             | <operador> <maisOperacoes>
-       
+<expressao> ::= '('<expressao>')' <maisOperacoes> 
+             | <operador> <maisOperacoes> 
+             | '('<expressao>')'
              
-<maisOperacoes> ::= OperadoresAritmeticos <maisOperacoes>
-                 | OperadoresAritmeticos  <expressao>
-                 | <>
+<maisOperacoes> ::= OperadoresAritmeticos <operador> 
+                 | OperadoresAritmeticos <expressao>
                  
-<operador> ::=  Numeros
-                | CadeiaCaracteres
-                | Identificadores<Vetor>
-                | <chamadaDeMetodo>
-                
- 
-
+<operador> ::= Numeros 
+            |  CadeiaDeCaracteres 
+            |  Identificadores<Vetor>   
+            |  <chamadaDeMetodo>  
+!            |  <Vetor>  
             
 ! -------------------------------------------------
 ! Incrementador
@@ -139,7 +134,7 @@ OperadoresLogicos = ('&&' | '||')
 <expN2> ::= Numeros | Identificadores <Vetor> 
 <expC> ::= OperadoresAritmeticos CadeiaCaracteres <expC> | <>
  
-<escreva> ::= 'escreva' '(' <Param Escrita> ')'';'
+<escreva> ::= 'escreva' '(' <Param Escrita> ');'
 <Param Escrita> ::= <TipoParametroE><MaisParametroE>
 <MaisParametroE> ::= ',' <Param Escrita> | <>
 <TipoParametroE> ::= Numeros <expN> | CadeiaCaracteres <expC> | Identificadores <Vetor> <expN> | TipoBooleano | <chamadaDeMetodo>
@@ -147,7 +142,7 @@ OperadoresLogicos = ('&&' | '||')
 !--------------------------------------------------
 ! Leia
 !--------------------------------------------------
-<leia> ::= 'leia' '(' <conteudoLeia> ')'';'
+<leia> ::= 'leia' '(' <conteudoLeia> ');'
 <conteudoLeia> ::= Identificadores<Vetor> <lerMais>
 <lerMais> ::= ',' <conteudoLeia> | <>
                   
@@ -156,17 +151,11 @@ OperadoresLogicos = ('&&' | '||')
 !--------------------------------------------------
 <negar> ::= '!' | <>
 <maisCond> ::= OperadoresLogicos <cond> <maisCond> | <>
-<se> ::= 'se' <condse> 'entao''{' <blocoSe> '}' <senao>
+<se> ::= 'se' <condse> 'entao{' <blocoSe> '}' <senao>
 <condse> ::= '(' <cond> <maisCond> ')'
-<cond> ::= <termo> OperadoresRelacionais <termo> 
-        | <negar> Identificadores<Vetor> 
-
+<cond> ::= <termo> OperadoresRelacionais <termo> | <negar> Identificadores<Vetor>
        
-       
-<tipoTermo> ::= Identificadores<Vetor> 
-             | Numeros 
-             | CadeiaCaracteres 
-             | TipoBooleano
+<tipoTermo> ::= Identificadores<Vetor> | Numeros | CadeiaCaracteres
         
 <termo> ::= <tipoTermo> <op>
 <op> ::= OperadorAritmeticos <tipoTermo> <op>|<>
@@ -178,9 +167,8 @@ OperadoresLogicos = ('&&' | '||')
 !--------------------------------------------------
 ! Comandos para os blocos dos escopo de se, enquanto e metodos
 !--------------------------------------------------
-<comandos> ::= <leia> | <escreva> | <se> | <enquanto> | <atribuicaoDeVariavel> | <chamadaDeMetodo> ';' | <incrementador> | 'resultado' <retorno> ';'           
-!<retorno> ::= Identificadores<Vetor> | Numero | StringLiteral | TipoBooleano | <chamadaDeMetodo> | <>
-<retorno> ::= <verificaCaso> | <>
+<comandos> ::= <leia> | <escreva> | <se> | <enquanto> | <atribuicaoDeVariavel> | <chamadaDeMetodo> | <incrementador> | 'resultado' <retorno> ';'           
+<retorno> ::= Identificadores<Vetor> | Numero | CadeiaCaracteres | TipoBooleano | <chamadaDeMetodo> | <>
 
 !--------------------------------------------------
 !Prototipos de  Métodos
@@ -194,7 +182,7 @@ OperadoresLogicos = ('&&' | '||')
 !Chamada de  Métodos
 !--------------------------------------------------
 
-<chamadaDeMetodo> ::= Identificadores'('<var>')'
+<chamadaDeMetodo> ::= Identificadores'('<var>');'
 <var> ::= Identificadores<Vetor> <maisVariavel> | <metodoParametro>
 <maisVariavel> ::= ','<var> | <>
 <metodoParametro> ::= Identificadores'('<var>')'<maisVariavel>
@@ -203,7 +191,6 @@ OperadoresLogicos = ('&&' | '||')
 ! Escopo de Metodos
 !--------------------------------------------------
 <escopoMetodo> ::= <comandos><escopoMetodo> | <>
-                
 !--------------------------------------------------
 ! Declaração de Enquanto
 !--------------------------------------------------
@@ -213,11 +200,9 @@ OperadoresLogicos = ('&&' | '||')
 !Operação relacional
 <operacao_relacional> ::= <complemento_operador> OperadoresRelacionais <complemento_operador> | <negar> Identificadores<Vetor>
 
-<complemento_operador> ::= Identificadores<Vetor> | Numeros | CadeiaCaracteres | TipoBooleano
+<complemento_operador> ::= Identificadores<Vetor> | Numeros | CadeiaCaracteres
                                               
 !Conteudo laco
+
 <conteudo_laco> ::= <comandos> <conteudo_laco> | <>
-
-
-
 

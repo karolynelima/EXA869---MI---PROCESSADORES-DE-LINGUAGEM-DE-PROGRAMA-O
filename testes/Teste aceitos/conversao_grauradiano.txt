@@ -1,0 +1,28 @@
+﻿programa {
+
+constantes {
+    real pi = 3.14, e = 2.72;
+    inteiro i = -1;     
+}
+
+metodo conversaoGrauRadiano(real a): real{
+   
+   resultado (a * pi) / 180;
+ 
+}
+
+metodo principal (): vazio{
+    
+    variaveis{
+        real aux;
+    }
+    
+    leia (aux);
+    
+    escreva( "Radiado de " + aux + " é" + conversaoGrauRadiano(aux));
+    
+
+
+}
+
+}
