@@ -51,7 +51,7 @@ metodo aumentoSalario(real salario, inteiro qtd): boleano{
     se (qtd > 0) entao{
         cont = 1;
         enquanto( cont <= qtd){
-            salario[cont] = salario[cont] + (salario[cont] * 0.3);
+            salario[cont] = salario[cont] + (salario[cont] * 0.3) ;
             cont ++;
         }
  
@@ -64,11 +64,11 @@ metodo aumentoSalario(real salario, inteiro qtd): boleano{
 
 metodo printDeucerto(boleano a): vazio{
 
-    se (a) entao{
+    se (a == verdadeiro) entao{
         
         escreva("Deu certo :)\n");
     } senao {
-        escreva("N�o deu certo :( \n");
+        escreva("Não deu certo :( \n");
     }
 }
 
@@ -88,8 +88,8 @@ metodo principal():vazio{
         escreva("Bem vindo !!! \n \n \n");
         escreva("Tecle 1 para cadastrar novo funcionario; \n");
         escreva("Tecle 2 para remover funcionario; \n");
-        escreva("Tecle 3 para aumentar sal�rio; \n");
-        escreva("Selecione op��o:");
+        escreva("Tecle 3 para aumentar salário; \n");
+        escreva("Selecione opção:");
         leia(op);
 
         se (op == 1) entao{

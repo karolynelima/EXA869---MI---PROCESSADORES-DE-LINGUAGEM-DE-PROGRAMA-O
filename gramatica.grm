@@ -92,7 +92,7 @@ OperadoresLogicos = ('&&' | '||')
 ! -------------------------------------------------
 
 !Sempre colocar um espaço entre o menos e o número, ex: (- 5)
-<atribuicaoDeVariavel> ::= Identificadores<Vetor>  '=' <verificaCaso> ';'
+<atribuicaoDeVariavel> ::= Identificadores<Vetor>  '=' <verificaCaso>';'
 <verificaCaso> ::= <incremento> 
                 | <expressao> 
                 | <booleano> 
@@ -158,9 +158,15 @@ OperadoresLogicos = ('&&' | '||')
 <maisCond> ::= OperadoresLogicos <cond> <maisCond> | <>
 <se> ::= 'se' <condse> 'entao''{' <blocoSe> '}' <senao>
 <condse> ::= '(' <cond> <maisCond> ')'
-<cond> ::= <termo> OperadoresRelacionais <termo> | <negar> Identificadores<Vetor>
+<cond> ::= <termo> OperadoresRelacionais <termo> 
+        | <negar> Identificadores<Vetor> 
+
        
-<tipoTermo> ::= Identificadores<Vetor> | Numeros | CadeiaCaracteres
+       
+<tipoTermo> ::= Identificadores<Vetor> 
+             | Numeros 
+             | CadeiaCaracteres 
+             | TipoBooleano
         
 <termo> ::= <tipoTermo> <op>
 <op> ::= OperadorAritmeticos <tipoTermo> <op>|<>
