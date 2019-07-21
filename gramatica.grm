@@ -51,7 +51,7 @@ OperadoresLogicos = ('&&' | '||')
 ! Não Terminais
 ! -------------------------------------------------
 
-<programa> ::= 'programa{'<blocoConstantes> <escopoPrograma>'}'
+<programa> ::= 'programa''{'<blocoConstantes> <escopoPrograma>'}'
         
             
 <escopoPrograma> ::= <metodo> <escopoPrograma> | <>
@@ -72,7 +72,7 @@ OperadoresLogicos = ('&&' | '||')
 ! Constantes
 ! -------------------------------------------------
 
-<blocoConstantes>::= 'constantes{'<estrutura_constante>'}' | <>
+<blocoConstantes>::= 'constantes''{'<estrutura_constante>'}' | <>
 <estrutura_constante> ::= Tipo<constantes>';'<estrutura_constante>
                        |<>
 <constantes> ::= Identificadores'='<constante><multiplasConstantes>
@@ -107,10 +107,11 @@ OperadoresLogicos = ('&&' | '||')
 
 <expressao> ::= '('<expressao>')' <maisOperacoes> 
              | <operador> <maisOperacoes> 
-             | '('<expressao>')'
+             | '('<expressao>')'         
              
 <maisOperacoes> ::= OperadoresAritmeticos <operador> 
                  | OperadoresAritmeticos <expressao>
+               
                  
 <operador> ::= Numeros 
             |  CadeiaDeCaracteres 
@@ -148,7 +149,7 @@ OperadoresLogicos = ('&&' | '||')
 !--------------------------------------------------
 <negar> ::= '!' | <>
 <maisCond> ::= OperadoresLogicos <cond> <maisCond> | <>
-<se> ::= 'se' <condse> 'entao{' <blocoSe> '}' <senao>
+<se> ::= 'se' <condse> 'entao''{' <blocoSe> '}' <senao>
 <condse> ::= '(' <cond> <maisCond> ')'
 <cond> ::= <termo> OperadoresRelacionais <termo> | <negar> Identificadores<Vetor>
        
@@ -165,7 +166,8 @@ OperadoresLogicos = ('&&' | '||')
 ! Comandos para os blocos dos escopo de se, enquanto e metodos
 !--------------------------------------------------
 <comandos> ::= <leia> | <escreva> | <se> | <enquanto> | <atribuicaoDeVariavel> | <chamadaDeMetodo> | <incrementador> | 'resultado' <retorno> ';'           
-<retorno> ::= Identificadores<Vetor> | Numero | CadeiaCaracteres | TipoBooleano | <chamadaDeMetodo> | <>
+!<retorno> ::= Identificadores<Vetor> | Numero | CadeiaCaracteres | TipoBooleano | <chamadaDeMetodo> | <>
+<retorno> ::= <verificaCaso> | <>
 
 !--------------------------------------------------
 !Prototipos de  Métodos
@@ -188,6 +190,7 @@ OperadoresLogicos = ('&&' | '||')
 ! Escopo de Metodos
 !--------------------------------------------------
 <escopoMetodo> ::= <comandos><escopoMetodo> | <>
+                
 !--------------------------------------------------
 ! Declaração de Enquanto
 !--------------------------------------------------
@@ -202,4 +205,3 @@ OperadoresLogicos = ('&&' | '||')
 !Conteudo laco
 
 <conteudo_laco> ::= <comandos> <conteudo_laco> | <>
-
