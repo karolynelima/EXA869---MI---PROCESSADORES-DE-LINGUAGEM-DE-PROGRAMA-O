@@ -1,0 +1,19 @@
+programa {
+
+metodo multiplicaNumero(real a, real b): real{      
+    resultado (a * b); 
+}
+    
+metodo numeroUm(): real{ 
+    resultado 1.00;
+}
+
+metodo principal (): vazio{        
+    variaveis{        
+        real aux;    
+    }        
+    leia (aux);        
+    escreva("Resultado de " + numeroUm() + "x" + aux + " eh: ");
+    escreva(multiplicaNumero(numeroUm(),aux));    
+}
+}
