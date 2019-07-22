@@ -1,0 +1,18 @@
+programa {
+
+constantes {
+    inteiro x = 1, y = 2, z = 3, w = 4;    
+}
+
+metodo somaNumeros(real a, real b): real{      
+    resultado a + b; 
+}
+
+metodo principal (): vazio{        
+    variaveis{        
+        real aux;  
+    }      
+    aux = somaNumeros(x,y) - somaNumeros(z,w); 
+    escreva(aux);    
+}
+}
