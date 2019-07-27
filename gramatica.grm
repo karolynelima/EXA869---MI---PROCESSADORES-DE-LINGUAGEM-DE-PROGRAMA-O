@@ -78,8 +78,9 @@ OperadoresLogicos = ('&&' | '||')
 <blocoConstantes>::= 'constantes''{'<estrutura_constante>'}' |<>
 <estrutura_constante> ::= Tipo<constantes>';'<estrutura_constante>
                        |<>
-<constantes> ::= Identificadores'='<constante><multiplasConstantes>
-              | Identificadores'='<constante>
+<constantes> ::= Identificadores'='<constante><multiConst>
+              
+<multiConst> :: = <multiplasConstantes>|<>
               
 <multiplasConstantes> ::= ','<constantes> 
 
